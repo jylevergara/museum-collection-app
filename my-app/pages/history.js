@@ -11,7 +11,7 @@ export default function History() {
 
 
   let parsedHistory = [];
-  searchHistory.forEach(h => {
+  searchHistory?.forEach(h => {
     let params = new URLSearchParams(h);
     let entries = params.entries();
     parsedHistory.push(Object.fromEntries(entries));
