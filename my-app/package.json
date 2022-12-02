@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.2",
+    "dotenv": "^16.0.3",
     "jotai": "^1.9.1",
+    "jwt-decode": "^3.1.2",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
