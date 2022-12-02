@@ -42,7 +42,8 @@ export default function History() {
                   className={styles.historyListITem}
                   onClick={(e) => historyClicked(e, index)}
                 >
-                  {Object.keys(historyItem).map(key => (<Fragment key={key}>{key}: <strong>{historyItem[key]}</strong>&nbsp;</Fragment>))}
+                  {Object.keys(historyItem).map(key => (
+                    <Fragment key={key}>{key}: <strong>{historyItem[key]}</strong>&nbsp;</Fragment>))}
                   <Button
                     className="float-end"
                     variant="danger" size="sm"
@@ -66,6 +67,8 @@ export default function History() {
       </Card>
     );
   }
+
+  if (!searchHistory) return null;
 
   return (
     <>
