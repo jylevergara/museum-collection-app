@@ -84,16 +84,16 @@ export default function MainNav() {
             )}
             {!token && (
               <>
-              <Link href="/register" passHref>
-                <Nav.Link onClick={() => setIsExpanded(false)}>
-                  Register
-                </Nav.Link>
-              </Link>
-              <Link href="/login" passHref>
-                <Nav.Link onClick={() => setIsExpanded(false)}>
-                  Login
-                </Nav.Link>
-              </Link>
+                <Link href="/register" passHref>
+                  <Nav.Link onClick={() => setIsExpanded(false)}>
+                    Register
+                  </Nav.Link>
+                </Link>
+                <Link href="/login" passHref>
+                  <Nav.Link onClick={() => setIsExpanded(false)}>
+                    Login
+                  </Nav.Link>
+                </Link>
               </>
             )}
           </Navbar.Collapse>
