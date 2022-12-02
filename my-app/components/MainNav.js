@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { readToken, removeToken } from '../lib/authenticate';
 import { addToHistory } from '../lib/userData';
 import { searchHistoryAtom } from '../store';
 
@@ -12,6 +13,14 @@ export default function MainNav() {
   const [searchField, setSearchField] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+  let token = readToken();
+  console.log(`token`, token);
+
+  function logout() {
+    setIsExpanded(false);
+    removeToken();
+    router.push('/login');
+  }
 
   async function submitForm(e) {
     e.preventDefault(); // prevent the browser from automatically submitting the form
@@ -37,35 +46,56 @@ export default function MainNav() {
                   Home
                 </Nav.Link>
               </Link>
-              <Link href="/search" passHref>
+              {token && (
+                <Link href="/search" passHref>
+                  <Nav.Link onClick={() => setIsExpanded(false)}>
+                    Advanced Search
+                  </Nav.Link>
+                </Link>
+              )}
+            </Nav>
+            &nbsp;
+            {token && (
+              <Form className="d-flex" onSubmit={submitForm}>
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                  value={searchField}
+                  onChange={(e) => setSearchField(e.target.value)}
+                />
+                <Button type="submit" variant="success">Search</Button>
+              </Form>
+            )}
+            &nbsp;
+            {token && (
+              <Nav className="me-auto">
+                <NavDropdown title={token ? token : 'User Name'} id="basic-nav-dropdown">
+                  <Link href="/favourites" passHref>
+                    <NavDropdown.Item onClick={() => setIsExpanded(false)}>Favourites</NavDropdown.Item>
+                  </Link>
+                  <Link href="/history" passHref>
+                    <NavDropdown.Item onClick={() => setIsExpanded(false)}>Search History</NavDropdown.Item>
+                  </Link>
+                  <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+            )}
+            {!token && (
+              <>
+              <Link href="/register" passHref>
                 <Nav.Link onClick={() => setIsExpanded(false)}>
-                  Advanced Search
+                  Register
                 </Nav.Link>
               </Link>
-            </Nav>
-            &nbsp;
-            <Form className="d-flex" onSubmit={submitForm}>
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                value={searchField}
-                onChange={(e) => setSearchField(e.target.value)}
-              />
-              <Button type="submit" variant="success">Search</Button>
-            </Form>
-            &nbsp;
-            <Nav className="me-auto">
-              <NavDropdown title="User Name" id="basic-nav-dropdown">
-                <Link href="/favourites" passHref>
-                  <NavDropdown.Item onClick={() => setIsExpanded(false)}>Favourites</NavDropdown.Item>
-                </Link>
-                <Link href="/history" passHref>
-                  <NavDropdown.Item onClick={() => setIsExpanded(false)}>Search History</NavDropdown.Item>
-                </Link>
-              </NavDropdown>
-            </Nav>
+              <Link href="/login" passHref>
+                <Nav.Link onClick={() => setIsExpanded(false)}>
+                  Login
+                </Nav.Link>
+              </Link>
+              </>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
