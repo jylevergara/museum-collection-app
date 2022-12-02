@@ -26,6 +26,8 @@ export default function Favourites() {
     );
   }
 
+  if (!favouritesList) return null;
+
   return (
     <>
       <Row className="gy-4">
