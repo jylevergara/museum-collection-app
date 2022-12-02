@@ -20,6 +20,7 @@ export async function authenticateUser(user, password) {
 }
 
 export async function registerUser(user, password, password2) {
+  console.log('registering...')
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
     method: 'POST',
     body: JSON.stringify({ userName: user, password: password, password2: password2 }),

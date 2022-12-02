@@ -1,6 +1,6 @@
 import { getToken } from './authenticate';
 
-async function addToFavourites(id) {
+export async function addToFavourites(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favourites/${id}`, {
     method: 'PUT',
     body: JSON.stringify({ id }),
@@ -20,7 +20,7 @@ async function addToFavourites(id) {
   }
 }
 
-async function removeFromFavourites(id) {
+export async function removeFromFavourites(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favourites/${id}`, {
     method: 'DELETE',
     headers: {
@@ -39,7 +39,7 @@ async function removeFromFavourites(id) {
   }
 }
 
-async function getFavourites() {
+export async function getFavourites() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favourites`, {
     method: 'GET',
     headers: {
@@ -58,7 +58,7 @@ async function getFavourites() {
   }
 }
 
-async function addToHistory(id) {
+export async function addToHistory(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/history/${id}`, {
     method: 'PUT',
     body: JSON.stringify({ id }),
@@ -78,7 +78,7 @@ async function addToHistory(id) {
   }
 }
 
-async function removeFromHistory(id) {
+export async function removeFromHistory(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/history/${id}`, {
     method: 'DELETE',
     headers: {
@@ -97,7 +97,7 @@ async function removeFromHistory(id) {
   }
 }
 
-async function getHistory() {
+export async function getHistory() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/history`, {
     method: 'GET',
     headers: {
