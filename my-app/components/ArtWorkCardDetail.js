@@ -35,7 +35,6 @@ export default function ArtWorkCardDetail(props) {
   }
   if (data) {
     const artwork = data;
-    console.log(`showAdded`, showAdded);
     return (
       <>
         <Card>

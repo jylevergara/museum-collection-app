@@ -2,9 +2,9 @@ import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { Card, Form, Button, Alert } from 'react-bootstrap';
 import { useState } from 'react';
-import { authenticateUser } from '../lib/authenticate';
+import { authenticateUser, readToken } from '../lib/authenticate';
 import { getFavourites, getHistory } from '../lib/userData';
-import { favouritesAtom, searchHistoryAtom } from '../store';
+import { favouritesAtom, searchHistoryAtom, userTokenAtom } from '../store';
 
 export default function Login(props) {
   const router = useRouter();
@@ -13,6 +13,7 @@ export default function Login(props) {
   const [warning, setWarning] = useState('');
   const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
+  const [token, setToken] = useAtom(userTokenAtom);
 
   async function updateAtoms() {
     setFavouritesList(await getFavourites());
@@ -23,6 +24,7 @@ export default function Login(props) {
     e.preventDefault();
     try {
       await authenticateUser(user, password);
+      setToken(readToken());
       await updateAtoms();
       router.push('/favourites');
     } catch (err) {

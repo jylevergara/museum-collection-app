@@ -1,11 +1,11 @@
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { readToken, removeToken } from '../lib/authenticate';
 import { addToHistory } from '../lib/userData';
-import { searchHistoryAtom } from '../store';
+import { searchHistoryAtom, userTokenAtom } from '../store';
 
 
 export default function MainNav() {
@@ -13,12 +13,16 @@ export default function MainNav() {
   const [searchField, setSearchField] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
-  let token = readToken();
-  console.log(`token`, token);
+  const [token, setToken] = useAtom(userTokenAtom);
+
+  useEffect(() => {
+    setToken(readToken())
+  },[readToken])
 
   function logout() {
     setIsExpanded(false);
     removeToken();
+    setToken(null);
     router.push('/login');
   }
 
@@ -71,7 +75,7 @@ export default function MainNav() {
             &nbsp;
             {token && (
               <Nav className="me-auto">
-                <NavDropdown title={token ? token : 'User Name'} id="basic-nav-dropdown">
+                <NavDropdown title={token ? token.userName : 'User Name'} id="basic-nav-dropdown">
                   <Link href="/favourites" passHref>
                     <NavDropdown.Item onClick={() => setIsExpanded(false)}>Favourites</NavDropdown.Item>
                   </Link>
@@ -83,7 +87,7 @@ export default function MainNav() {
               </Nav>
             )}
             {!token && (
-              <>
+              <Nav className="me-auto">
                 <Link href="/register" passHref>
                   <Nav.Link onClick={() => setIsExpanded(false)}>
                     Register
@@ -94,7 +98,7 @@ export default function MainNav() {
                     Login
                   </Nav.Link>
                 </Link>
-              </>
+              </Nav>
             )}
           </Navbar.Collapse>
         </Container>
