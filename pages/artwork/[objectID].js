@@ -1,4 +1,4 @@
-import ArtworkCardDetail from '../../../my-app/components/ArtWorkCardDetail.js';
+import ArtworkCardDetail from '../../components/ArtWorkCardDetail.js';
 import { useRouter } from 'next/router';
 import { Col, Row } from 'react-bootstrap';
 
