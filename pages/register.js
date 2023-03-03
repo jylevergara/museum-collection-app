@@ -27,7 +27,7 @@ export default function Register(props) {
       <Card bg="light">
         <Card.Body>
           <h2>Register</h2>
-          Register for an account:
+          You must register in order to browse our collection.
         </Card.Body>
       </Card>
       <br />

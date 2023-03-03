@@ -38,7 +38,7 @@ export default function Login(props) {
       <Card bg="light">
         <Card.Body>
           <h2>Login</h2>
-          Enter your login information below:
+          Enter your login information below.
         </Card.Body>
       </Card>
       <br />

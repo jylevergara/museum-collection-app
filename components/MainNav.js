@@ -7,7 +7,6 @@ import { readToken, removeToken } from '../lib/authenticate';
 import { addToHistory } from '../lib/userData';
 import { searchHistoryAtom, userTokenAtom } from '../store';
 
-
 export default function MainNav() {
   const router = useRouter();
   const [searchField, setSearchField] = useState('');
@@ -41,7 +40,7 @@ export default function MainNav() {
     <>
       <Navbar className="fixed-top navbar-dark" bg="dark" expand="lg" expanded={isExpanded}>
         <Container>
-          <Navbar.Brand>Mary Junelyn Vergara</Navbar.Brand>
+          <Navbar.Brand>Met Museum Collection</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsExpanded(!isExpanded)} />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

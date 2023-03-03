@@ -1,13 +1,3 @@
-
-/************************************************************************ *********
- * WEB422 – Assignment 06
- * I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part of this
- * assignment has been copied manually or electronically from any other source (including web sites) or
- * distributed to other students. *
- * Name: Mary Junelyn Vergara Student ID: 158792200 Date: Dec 2, 2022 *
- * Vercel App (Deployed) Link: https://422-final-assignment.vercel.app/
- * ********************************************************************************/
-
 import { Col, Row } from 'react-bootstrap';
 
 export default function Home() {
