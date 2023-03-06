@@ -1,4 +1,4 @@
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Card } from 'react-bootstrap';
 
 export default function Home() {
   return (
