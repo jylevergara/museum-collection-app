@@ -15,9 +15,9 @@ export default function Layout(props) {
         <Card.Body>
           <Card.Title>Created by <a href="https://jylevergara.com">Jyle Vergara</a></Card.Title>
           <Row className="justify-content-md-center">
-            <Col md="auto"><a href="https://instagram.com/jylejourneys"><FaInstagram /></a></Col>
-            <Col md="auto"><a href="https://github.com/jylevergara"><FaGithub /></a></Col>
-            <Col md="auto"><a href="https://www.linkedin.com/in/mary-junelyn-vergara"><FaLinkedin /></a></Col>
+            <Col md="auto"><a href="https://instagram.com/jylejourneys" target="_blank" rel="noopener noreferrer"><FaInstagram /></a></Col>
+            <Col md="auto"><a href="https://github.com/jylevergara" target="_blank" rel="noopener noreferrer"><FaGithub /></a></Col>
+            <Col md="auto"><a href="https://www.linkedin.com/in/mary-junelyn-vergara" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a></Col>
           </Row>
         </Card.Body>
       </Card>
